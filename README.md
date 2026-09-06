@@ -1,10 +1,11 @@
 # Meme Flask
 
-A small Flask app that pulls a random meme from a subreddit (via the [meme-api](https://meme-api.com)) and displays it, auto-refreshing every 30 seconds.
+A small Flask app that pulls a random meme from a given subreddit (via the [meme-api](https://meme-api.com)) and displays it, auto-refreshing every 30 seconds.
 
 ## Features
 
-- Shows a random meme from the `wholesomememes` subreddit
+- Shows a random meme from any subreddit (defaults to `wholesomememes`)
+- Enter a different subreddit name to switch feeds
 - Auto-refreshes every 30 seconds to fetch a new meme
 
 ## Requirements
@@ -26,6 +27,13 @@ python meme_flask.py
 ```
 
 The app binds to `0.0.0.0:5001`, so it's reachable at `http://localhost:5001`.
+
+## Usage
+
+- Visit the site to see a meme from the default subreddit.
+- Type a subreddit name into the input field and press Enter to load a meme from it.
+- You can also pass a subreddit directly via query string, e.g. `http://localhost:5001/?sr=aww`.
+- If the subreddit is invalid or has no meme available, the app falls back to the default subreddit.
 
 ## Project Structure
 

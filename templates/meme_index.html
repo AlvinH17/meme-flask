@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="30;url={{ url_for('index') }}" />
+    <meta http-equiv="refresh" content="30;url={{ url_for('index', sr=subreddit) }}" />
     <title>Meme Website</title>
     <link
       rel="stylesheet"
@@ -17,6 +17,17 @@
       <p>Here is your meme! This will refresh in 30 seconds!</p>
       <p><img src="{{meme_pic}}" alt="Meme Pic..." /></p>
       <p><b>Current subreddit</b>: {{subreddit}}</p>
+      <form action="{{ url_for('index') }}" method="POST">
+        <div>
+          <label for="inputSub" class="form-label">Input Subreddit</label>
+          <input
+            type="text"
+            id="inputSub"
+            name="inputSub"
+            placeholder="Current: {{subreddit}}"
+          />
+        </div>
+      </form>
     </div>
   </body>
 </html>

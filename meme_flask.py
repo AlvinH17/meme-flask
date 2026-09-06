@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
 
@@ -15,9 +15,16 @@ def get_meme(sr):
     subreddit = response["subreddit"]
     return meme_large,subreddit
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def index():
-    result = get_meme(DEFAULTSR)
+    sr = DEFAULTSR
+    if (request.method == "POST"):
+        sr = request.form.get("inputSub") or DEFAULTSR
+    else:
+        sr = request.args.get("sr") or DEFAULTSR
+    result = get_meme(sr)
+    if result is None:
+        return redirect(url_for("index",sr=DEFAULTSR))
     meme_pic, subreddit = result
     return render_template("meme_index.html", meme_pic=meme_pic, subreddit=subreddit)
 
